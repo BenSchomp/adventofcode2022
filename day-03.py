@@ -1,7 +1,6 @@
 priorities = ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-part_one = 0
-part_two = 0
-group = [None, None, None]
+part_one = part_two = 0
+group = [None]*3
 
 file = open('day-03.txt', 'r')
 
@@ -18,9 +17,9 @@ for line in file:
       break
 
   # --- part two ---
-  g = (line_count+2) % 3 # {0,1,2}
+  g = line_count % 3 # {1,2,0}
   group[g] = line
-  if g == 2:
+  if g == 0:
     for c in group[0]:
       if c in group[1] and c in group[2]:
         part_two += priorities.find(c)
